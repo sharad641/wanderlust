@@ -1,30 +1,107 @@
 <% layout('/layouts/boilerplate') %>
   <body>
-    <h3>All Listings</h3>
-   <!--<form method="GET" action="/listings/new">
-      <button>Create New Listing</button>
-    </form> --> 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-      <% for(let listing of allListings) { %>
-        <a href="/listings/<%= listing._id %>" class ="listing-link">
-        <div class="card col listing-card">
-          <img 
-            src="<%= listing.image %>"    class="card-img-top" 
-            alt="listing_image"
-            style="height: 20rem"
-          />
-          <div class ="card-img-overlay">sharad pati l </div>
-          <div class="card-body">
-            <p class="card-text">
-              <b> <%= listing.title %></b> <br/>
-              &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
-            </p>
-          </div>
-        </div>
-      </a>
-        <% } %>
-      
-    </div>
-    
+    <div class="container my-5">
+      <h3 class="text-center mb-5">All Listings</h3>
 
-    
+      <!-- New Listing Button -->
+      <!--<form method="GET" action="/listings/new" class="text-center mb-4">
+        <button class="btn btn-primary px-4 py-2 fs-5 fw-bold">Create New Listing</button>
+      </form>--> 
+
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+        <% for (let listing of allListings) { %>
+          <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none">
+            <div class="card listing-card shadow-sm border-0 rounded">
+              <img 
+                src="<%= listing.image %>" 
+                class="card-img-top" 
+                alt="listing_image"
+                style="height: 20rem; object-fit: cover;"
+              />
+              <div class="card-body">
+                <p class="card-text">
+                  <b class="d-block mb-2"><%= listing.title %></b> 
+                  <span class="text-muted">&#8377; <%= listing.price.toLocaleString("en-IN") %>/night</span>
+                </p>
+              </div>
+              <!-- Card Hover Overlay (Optional) -->
+              <div class="card-img-overlay d-flex justify-content-center align-items-center text-white">
+                <span class="overlay-text fs-4">View Listing</span>
+              </div>
+            </div>
+          </a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Custom CSS for Modern Styling -->
+    <style>
+      /* Card Styling */
+      .listing-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .listing-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-link {
+        color: inherit;
+      }
+
+      .listing-card img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Card Overlay Text */
+      .card-img-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .listing-card:hover .card-img-overlay {
+        opacity: 1;
+      }
+
+      .overlay-text {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Font and text styles */
+      .card-text b {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .card-text .text-muted {
+        font-size: 1rem;
+      }
+
+      /* Spacing between cards */
+      .row-cols-lg-3 .col {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Button Styling */
+      button.btn-primary {
+        background-color: #007bff;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      button.btn-primary:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </body>

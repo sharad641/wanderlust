@@ -1,0 +1,105 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-5">
+    <!-- Heading -->
+    <h1 class="col-6 offset-3 text-center mb-4">Login</h1>
+
+    <div class="col-12 col-md-6 offset-md-3">
+        <!-- Flash Messages (if any) -->
+        <% if (messages.error) { %>
+            <div class="alert alert-danger text-center">
+                <%= messages.error %>
+            </div>
+        <% } %>
+        <% if (messages.success) { %>
+            <div class="alert alert-success text-center">
+                <%= messages.success %>
+            </div>
+        <% } %>
+
+        <!-- Login Form -->
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+            
+            <!-- Username Input -->
+            <div class="mb-3">
+                <label for="username" class="form-label"><b>Username</b></label>
+                <input 
+                    name="username" 
+                    id="username" 
+                    type="text"  
+                    class="form-control" 
+                    required 
+                    placeholder="Enter your username"
+                />  
+                <div class="invalid-feedback">Please enter your username.</div>   
+            </div>
+
+            <!-- Password Input -->
+            <div class="mb-3">
+                <label for="password" class="form-label"><b>Password</b></label>
+                <input 
+                    name="password" 
+                    id="password" 
+                    type="password"  
+                    class="form-control" 
+                    required 
+                    placeholder="Enter your password"
+                />
+                <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+
+            <!-- Login Button -->
+            <button class="btn btn-primary w-100 py-2 mt-3">Login</button>
+        </form>
+
+        <!-- Register Link -->
+        <div class="text-center mt-3">
+            <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Add Custom CSS for Styling -->
+<style>
+    .alert {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .mt-3 {
+        margin-top: 15px;
+    }
+
+    .mb-3 {
+        margin-bottom: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .col-12 {
+            margin-bottom: 20px;
+        }
+    }
+</style>

@@ -1,78 +1,144 @@
 <% layout('/layouts/boilerplate') %>
-<div class="row">
-  <div class="col-8 offset-2">
-    <h3>Edit your Listing</h3>
-    <br><br />
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
-      <div>
-        <label for="title" class="form-label">Title</label>
-        <input 
-          name="listing[title]" 
-          value="<%= listing.title %>" 
-          type="text" 
-          class="form-control"
-          required
-        />
-      </div>
-      <br />
-      
-      <div>
-        <label for="description" class="form-label">Description</label>
-        <textarea 
-          name="listing[description]" 
-          class="form-control"
-        ><%= listing.description %></textarea>
-      </div>
-      <br />
-      
-      <div>
-        <label for="image" class="form-label">Image Link</label>
-        <input 
-          name="listing[image]" 
-          value="<%= listing.image %>" 
-          type="text" 
-          class="form-control"
-          required
-        />
-      </div>
-      <br />
-      
-      <div class="row">
-        <div class="mb-3 col-md-4">
-          <label for="price" class="form-label">Price</label>
+
+<!-- Main Container -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <h3 class="text-center mb-4">Edit Your Listing</h3>
+
+      <!-- Form Container -->
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="shadow-lg p-4 rounded bg-light">
+        
+        <!-- Title Field -->
+        <div class="mb-3">
+          <label for="title" class="form-label fw-bold">Title</label>
           <input 
-            name="listing[price]" 
-            value="<%= listing.price %>" 
-            type="number" 
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="mb-3 col-md-8">
-          <label for="country" class="form-label">Country</label>
-          <input 
-            name="listing[country]" 
-            value="<%= listing.country %>" 
+            name="listing[title]" 
+            value="<%= listing.title %>" 
             type="text" 
-            class="form-control"
+            class="form-control shadow-sm" 
             required
           />
         </div>
-      </div>
-      
-      <div>
-        <label for="location" class="form-label">Location</label>
-        <input 
-          name="listing[location]" 
-          value="<%= listing.location %>" 
-          type="text" 
-          class="form-control"
-          required
-        />
-      </div>
-      <br /><br />
-      <button class="btn btn-dark add-btn">Edit</button>
-      <br><br />
-    </form>
+
+        <!-- Description Field -->
+        <div class="mb-3">
+          <label for="description" class="form-label fw-bold">Description</label>
+          <textarea 
+            name="listing[description]" 
+            class="form-control shadow-sm" 
+            rows="4"
+            required
+          ><%= listing.description %></textarea>
+        </div>
+
+        <!-- Image Link Field -->
+        <div class="mb-3">
+          <label for="image" class="form-label fw-bold">Image Link</label>
+          <input 
+            name="listing[image]" 
+            value="<%= listing.image %>" 
+            type="text" 
+            class="form-control shadow-sm" 
+            required
+          />
+        </div>
+
+        <!-- Price and Country Fields -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label fw-bold">Price</label>
+            <input 
+              name="listing[price]" 
+              value="<%= listing.price %>" 
+              type="number" 
+              class="form-control shadow-sm" 
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="country" class="form-label fw-bold">Country</label>
+            <input 
+              name="listing[country]" 
+              value="<%= listing.country %>" 
+              type="text" 
+              class="form-control shadow-sm" 
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Location Field -->
+        <div class="mb-3">
+          <label for="location" class="form-label fw-bold">Location</label>
+          <input 
+            name="listing[location]" 
+            value="<%= listing.location %>" 
+            type="text" 
+            class="form-control shadow-sm" 
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button class="btn btn-primary px-4 py-2 fs-5 fw-bold mt-3" type="submit">Update Listing</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
+
+<!-- Custom CSS for Modern UI -->
+<style>
+  /* Custom styles to enhance UI */
+  .form-label {
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  /* Add shadow to the form */
+  form {
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Button Styling */
+  button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+
+  button.btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    .form-label {
+      font-size: 1rem;
+    }
+
+    .form-control {
+      font-size: 0.9rem;
+    }
+
+    button.btn-primary {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+</style>
+

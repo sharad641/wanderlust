@@ -1,82 +1,192 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row">
-  <div class="col-8 offset-2">
-   
-<h3>Create a New Listing</h3>
-<form method="POST" action="/listings" novalidate class="needs-validation">
-  <div class="mb-3">
-    <label for="titles" class="form-label">Title</label>
-    <input 
-      name="listing[title]" 
-      placeholder="Enter title" 
-      type="text" 
-      class="form-control"
-      required
-    />
-    <div class="valid-feedback">title looks good</div>
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <textarea
-      name="listing[description]"
-      class="form-control"
-      required
-    ></textarea>
-    <div class="invalid-feedback"> please enter a short discription </div>
-    
-  </div>
-  
-  <div class="mb-3">
-    <label for="image" class="form-label">Image Link</label>
-    <input
-      name="listing[image]"
-      placeholder="Enter image URL/Link"
-      type="text"
-      class="form-control"
-    />
-  </div>
-  <div class="row">
-    <div class="mb-3 col-4-md-4">
-      <label for="price" class="form-label">Price</label>
-      <input 
-        name="listing[price]" 
-        placeholder="1200" 
-        type="number" 
-        class="form-control"
-        required
-      />
-      <div class="invalid-feedback">price should be valid</div>
+<body>
+  <!-- Background Gradient -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <!-- Card to hold the form -->
+        <div class="card shadow-lg rounded-3 p-4" style="background: #ffffff;">
+          <h3 class="text-center text-dark mb-4">Create a New Listing</h3>
+          
+          <!-- Form Starts Here -->
+          <form method="POST" action="/listings" novalidate class="needs-validation">
+            <!-- Title Input -->
+            <div class="mb-4">
+              <label for="title" class="form-label text-muted">Title</label>
+              <input 
+                name="listing[title]" 
+                placeholder="Enter title" 
+                type="text" 
+                class="form-control shadow-sm"
+                required
+              />
+              <div class="invalid-feedback">Please enter a title</div>
+            </div>
 
-    </div>
-    <div class="mb-3 col-8-md-8">
-      <label for="country" class="form-label">Country</label>
-      <input 
-        name="listing[country]" 
-        placeholder="India" 
-        type="text" 
-        class="form-control"
-        required
-      />
-      <div class="invalid-feedback">country name should be valid</div>
-    </div>
+            <!-- Description Input -->
+            <div class="mb-4">
+              <label for="description" class="form-label text-muted">Description</label>
+              <textarea
+                name="listing[description]"
+                class="form-control shadow-sm"
+                placeholder="Enter a short description"
+                required
+              ></textarea>
+              <div class="invalid-feedback">Please enter a short description</div>
+            </div>
+            
+            <!-- Image Link Input -->
+            <div class="mb-4">
+              <label for="image" class="form-label text-muted">Image Link</label>
+              <input
+                name="listing[image]"
+                placeholder="Enter image URL/Link"
+                type="text"
+                class="form-control shadow-sm"
+              />
+            </div>
 
+            <!-- Price and Country Row -->
+            <div class="row">
+              <!-- Price Input -->
+              <div class="mb-4 col-md-6">
+                <label for="price" class="form-label text-muted">Price</label>
+                <input 
+                  name="listing[price]" 
+                  placeholder="1200" 
+                  type="number" 
+                  class="form-control shadow-sm"
+                  required
+                />
+                <div class="invalid-feedback">Please enter a valid price</div>
+              </div>
+
+              <!-- Country Input -->
+              <div class="mb-4 col-md-6">
+                <label for="country" class="form-label text-muted">Country</label>
+                <input 
+                  name="listing[country]" 
+                  placeholder="India" 
+                  type="text" 
+                  class="form-control shadow-sm"
+                  required
+                />
+                <div class="invalid-feedback">Please enter a valid country</div>
+              </div>
+            </div>
+
+            <!-- Location Input -->
+            <div class="mb-4">
+              <label for="location" class="form-label text-muted">Location</label>
+              <input
+                name="listing[location]"
+                placeholder="Mysore"
+                type="text"
+                class="form-control shadow-sm"
+                required
+              />
+              <div class="invalid-feedback">Please enter a valid location</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary btn-lg shadow-lg hover-shadow-lg">Add Listing</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
- 
-  
-  <div>
-    <label for="location" class="form-label">Location</label>
-    <input
-      name="listing[location]"
-      placeholder="Mysore"
-      type="text"
-      class="form-control"
-      required
-    />
-    <div class="invalid-feedback">location should be valid</div>
-  </div>
-  <br /><br />
-  <button class="btn btn-dark add-btn">Add</button>
-  <br><br />
-</form>
-</div>
-</div>
+
+  <!-- Custom CSS for Modern Styling -->
+  <style>
+    /* Gradient background for the form card */
+    .card {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Fields Styling */
+    .form-control {
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #ff7e5f;
+      box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+    }
+
+    .form-label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #495057;
+    }
+
+    .invalid-feedback {
+      font-size: 0.875rem;
+      color: #e74c3c;
+    }
+
+    /* Floating Labels */
+    .form-control:focus {
+      border-color: #ff7e5f;
+      box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+    }
+
+    .form-control:valid {
+      border-color: #28a745;
+    }
+
+    .btn {
+      border-radius: 50px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      background-color: #e67e22;
+      transform: scale(1.05);
+    }
+
+    /* Button Focus */
+    .btn:focus {
+      outline: none;
+    }
+
+    .btn-lg {
+      padding: 15px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .card {
+        padding: 20px;
+      }
+
+      .form-control {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <!-- JavaScript for Form Validation Feedback -->
+  <script>
+    (function () {
+      'use strict';
+      var forms = document.querySelectorAll('.needs-validation');
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+    })();
+  </script>
+</body>

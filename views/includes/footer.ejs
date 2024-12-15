@@ -1,22 +1,107 @@
-<<footer>
+<footer>
+  <div class="container">
     <div class="f-info">
+      <!-- Social Media Icons -->
       <div class="f-info-socials">
-        <a href="https://www.instagram.com/yourInstagramHandle" target="https://www.instagram.com/?hl=en">
+        <a href="https://www.instagram.com/yourInstagramHandle" target="_blank" class="social-icon">
           <i class="fa-brands fa-square-instagram"></i>
         </a>
-        <a href="https://www.facebook.com/yourFacebookHandle" target="_blank">
+        <a href="https://www.facebook.com/yourFacebookHandle" target="_blank" class="social-icon">
           <i class="fa-brands fa-square-facebook"></i>
         </a>
-        <a href="https://www.linkedin.com/in/yourLinkedInHandle" target="_blank">
+        <a href="https://www.linkedin.com/in/yourLinkedInHandle" target="_blank" class="social-icon">
           <i class="fa-brands fa-linkedin"></i>
         </a>
       </div>
-      <div class="f-info-brand">&copy; wanderlust Private Limited</div>
       
+      <!-- Brand info -->
+      <div class="f-info-brand">
+        &copy; 2024 Wanderlust Private Limited
+      </div>
+      
+      <!-- Privacy and Terms Links -->
       <div class="f-info-links">
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
+        <a href="/privacy" class="footer-link">Privacy</a>
+        <a href="/terms" class="footer-link">Terms</a>
       </div>
     </div>
-  </footer>
-  
+  </div>
+</footer>
+
+<style>
+  /* Footer Styling */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .f-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Social media icons styling */
+  .f-info-socials {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-icon {
+    font-size: 2rem;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+
+  .social-icon:hover {
+    color: #ffd700;
+  }
+
+  /* Brand text styling */
+  .f-info-brand {
+    font-size: 1rem;
+    color: #ddd;
+  }
+
+  /* Footer links styling */
+  .f-info-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-link {
+    color: #ddd;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: #ffd700;
+  }
+
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .f-info-socials {
+      gap: 15px;
+    }
+
+    .social-icon {
+      font-size: 1.8rem;
+    }
+
+    .f-info-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

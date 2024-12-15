@@ -1,62 +1,203 @@
 <% layout('/layouts/boilerplate') %>
-<div class="row mt-3">
-<div class="col-8 offset-3">
-    <h3><%= listing.title %></h3>
-    </div>
-
-    <div class="card col-6 offset-3 show-cards listing-card">
-      <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image"/>
-      <div class="card-body">
-          <%= listing.description %><br>
-          &#8377; <%= listing.price.toLocaleString("en-IN") %><br>
-          <%= listing.location %><br>
-          <%= listing.country %>
-        </p>
-    
-      </div>
-    </div>
-    <br />
-    <div class="btns">
-    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3">Edit</a>
-  
-     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-      <button class="btn btn-danger offset-4">Delete</button>
-</form>
-</div>
-
-<div class="col-8 offset-3 mb-3"> 
-  <br/>
-  <h4>Leave a Review</h4>
-  <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
-    <div class="mb-3 mt-3">
-      <label for="rating" class="form-label">Rating</label>
-      <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range"/>
-    </div>
-  <div class="mb-3 mt-3">
-  <label for="comment" class="form-label">comments</label>
-  <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
-  <div class="invalid-feedback">Please sumit some comments for the review</div>
-</div>
-
-<button class="btn btn-outline-dark">Sumit</button>
-  </form>
-  <hr />
- 
-  
-  <p><b>All reviews</b></p>
+<div class="container my-5">
   <div class="row">
-    <% listing.reviews.forEach(function(review) { %>
-      <div class="card col-5 ms-3 mb-3"> 
+    <!-- Listing Title -->
+    <div class="col-12 text-center mb-4">
+      <h3 class="display-4 text-dark"><%= listing.title %></h3>
+    </div>
+
+    <!-- Listing Card -->
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card shadow-lg rounded-3 overflow-hidden">
+        <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image" />
         <div class="card-body">
-          <h5 class="card-title">Review</h5>
-          <p class="card-text"><%= review.comment %></p>
-          <p class="card-text"><%= review.rating %> stars</p>
-          
-          <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-            <button class="btn btn-sm btn-dark">Delete</button>
-          </form>
+          <p class="card-text text-muted"><%= listing.description %></p>
+          <div class="d-flex justify-content-between">
+            <p class="text-muted">&#8377; <%= listing.price.toLocaleString("en-IN") %>/night</p>
+            <p class="text-muted"><%= listing.location %>, <%= listing.country %></p>
+          </div>
         </div>
       </div>
-    <% }) %>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="col-12 text-center my-3">
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary px-4 py-2 mx-2">Edit</a>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline-block">
+        <button class="btn btn-danger px-4 py-2 mx-2">Delete</button>
+      </form>
+    </div>
+
+    <!-- Leave a Review Section -->
+    <div class="col-12 mb-5">
+      <h4 class="text-center">Leave a Review</h4>
+      <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range" />
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comments</label>
+          <textarea name="review[comment]" id="comment" class="form-control" required></textarea>
+          <div class="invalid-feedback">Please submit some comments for the review.</div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </div>
+      </form>
+      <hr />
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="col-12">
+      <h4 class="text-center">All Reviews</h4>
+      <div class="row">
+        <% listing.reviews.forEach(function(review) { %>
+          <div class="col-md-4 col-12 mb-4">
+            <div class="card shadow-sm rounded-3">
+              <div class="card-body">
+                <h5 class="card-title">Review</h5>
+                <p class="card-text"><%= review.comment %></p>
+                <p class="card-text"><%= review.rating %> stars</p>
+                <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="d-inline-block">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
   </div>
-  
+</div>
+
+<!-- Custom CSS for Modern Styling -->
+<style>
+  /* General Styles */
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* Card Styling */
+  .card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-img-top {
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+  }
+
+  .show-img {
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 20px;
+    background-color: white;
+  }
+
+  .form-range {
+    width: 100%;
+    background-color: #e9ecef;
+    height: 8px;
+  }
+
+  .btn {
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+    background-color: #e67e22;
+  }
+
+  .btn-outline-dark {
+    color: #495057;
+    border-color: #495057;
+  }
+
+  .btn-outline-dark:hover {
+    background-color: #495057;
+    color: white;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+  }
+
+  .form-control:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .card-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .invalid-feedback {
+    font-size: 0.875rem;
+    color: #e74c3c;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  /* Reviews Section */
+  .card-body {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+
+  .btn-sm {
+    border-radius: 25px;
+  }
+
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .col-lg-6 {
+      width: 100%;
+    }
+
+    .card {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      font-size: 1rem;
+    }
+
+    .form-control {
+      padding: 12px;
+    }
+  }
+</style>
